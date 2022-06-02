@@ -6,6 +6,8 @@ const imageSchema = new mongoose.Schema({
             location: { type: String, required: true }
         }
     ]
+},{
+    timestamps: true
 })
 
 export const imageModel = mongoose.model("Images",imageSchema)

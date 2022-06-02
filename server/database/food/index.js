@@ -22,6 +22,9 @@ const foodSchema = new mongoose.Schema({
         ref: "Restuarants",
         required: true
     }
+},
+{
+    timestamps: true
 })
 
 export const foodModel = mongoose.model("Foods",foodSchema)

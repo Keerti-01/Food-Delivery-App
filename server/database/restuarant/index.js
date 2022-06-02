@@ -31,6 +31,8 @@ const restuarantSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "Images"
     }
+},{
+    timestamps: true
 })
 
 export const restuarantModel = mongoose.model("Restuarants",restuarantSchema)
