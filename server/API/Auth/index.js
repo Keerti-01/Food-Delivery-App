@@ -5,13 +5,14 @@ import jwt from "jsonwebtoken"
 
 // models
 import { userModel } from "../../database/user";
+import passport from "passport";
 
 
 const Router = express.Router();
 
 // signup    
 /**
- * Route            /signup
+ * Route            /auth/signup
  * Desc             signup with email and password
  * Params           none
  * method           post
@@ -29,11 +30,11 @@ Router.post("/signup", async(req, res) => {
             return res.status(500).json({ error: error.message });
         }
     })
-    export default Router;
+    
     
 // signin   
 /**
- * Route            /signin
+ * Route            /auth/signin
  * Desc             signin with email and password
  * Params           none
  * method           post
@@ -51,6 +52,42 @@ Router.post("/signup", async(req, res) => {
             return res.status(500).json({ error: error.message });
         }
     })
+
+// google authentication    
+/**
+ * Route            /auth/google
+ * Desc             google signin
+ * Params           none
+ * method           get
+ * access           public
+ */
+ Router.get("/google", passport.authenticate("google",
+  { scope:
+    [
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  }
+))
+
+// google callback : what should happen afterr authenticating    
+/**
+ * Route            /google/callback
+ * Desc             google signin callback
+ * Params           none
+ * method           get
+ * access           public
+ */
+ Router.get(
+    "/google/callback",
+    passport.authenticate("google",{ failureRedirect: "/" } ),
+    (req, res) => {
+        return res.json({ token: req.session.passport.user.token })
+    }
+    
+    )
+
+export default Router;
 
 
 
