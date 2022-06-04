@@ -9,7 +9,9 @@ const reviewSchema = new mongoose.Schema({
     photos: [{
         type: mongoose.Types.ObjectId,
         ref: "Images"
-    }]
+    }],
+    isFoodReview: Boolean,
+    isRestuarantReview: Boolean
 },{
     timestamps: true
 })

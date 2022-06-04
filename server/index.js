@@ -16,6 +16,9 @@ import Restuarant from "./API/Restuarant"
 import Food from "./API/Food"
 import Menu from "./API/Menu"
 import Image from "./API/Image"
+import Order from "./API/Order"
+import Review from "./API/Reviews"
+import User from "./API/User"
 
 //databse connection
 import ConnectDB from "./database/connection"
@@ -45,6 +48,9 @@ app.use("/restuarant", Restuarant)
 app.use("/food", Food)
 app.use("/menu", Menu)
 app.use("/image", Image)
+app.use("/order", Order)
+app.use("/review", Review)
+app.use("/user", User)
 
 app.get("/", (req,res) => res.json({message : "Setup Success"}))
 
