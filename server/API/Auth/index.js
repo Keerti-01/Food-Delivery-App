@@ -7,7 +7,6 @@ import jwt from "jsonwebtoken"
 import { userModel } from "../../database/user";
 import passport from "passport";
 
-
 const Router = express.Router();
 
 // signup    

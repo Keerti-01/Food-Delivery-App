@@ -12,7 +12,10 @@ import googleAuthConfig from "./config/google.config";
 
 //microservice routes
 import Auth from "./API/Auth"
-
+import Restuarant from "./API/Restuarant"
+import Food from "./API/Food"
+import Menu from "./API/Menu"
+import Image from "./API/Image"
 
 //databse connection
 import ConnectDB from "./database/connection"
@@ -37,7 +40,11 @@ app.use(passport.session())
 googleAuthConfig(passport)
 
 //application routes
-app.use("/auth",Auth)
+app.use("/auth", Auth)
+app.use("/restuarant", Restuarant)
+app.use("/food", Food)
+app.use("/menu", Menu)
+app.use("/image", Image)
 
 app.get("/", (req,res) => res.json({message : "Setup Success"}))
 
