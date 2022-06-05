@@ -6,6 +6,9 @@ import passport from "passport"
 import { foodModel } from "../../database/allModels"
 const Router = express.Router()
 
+//validation
+import { ValidateRestuarantID, ValidateCategory } from "../../Validation/food"
+
 /** Food based on particular restuarant
  * Route            /food/r/id
  * Desc             get all food based on particular restuarant
@@ -14,7 +17,11 @@ const Router = express.Router()
  * access           public
  */
 Router.get("/r/:_id", async(req, res) => {
+    
     try {
+        // validation
+        await ValidateRestuarantID(req.params)
+
         const { _id } = req.params
         const foods = await foodModel.find({ restuarant: _id})
 
@@ -35,6 +42,9 @@ Router.get("/r/:_id", async(req, res) => {
  */
 Router.get("/c/:category", async( req, res) => {
     try {
+        // validation
+        await ValidateCategory(req.params)
+        
         const { category } = req.params
         const foods = await foodModel.find({ 
             category: { $regex: category, $options: "i"}

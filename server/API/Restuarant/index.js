@@ -4,6 +4,11 @@ import passport from "passport"
 
 //database model
 import { restuarantModel } from "../../database/allModels"
+
+//validation
+import { ValidateRestuarantCity, ValidateRestuarantSearchString } from "../../Validation/restuarant"
+import { ValidateRestuarantID } from "../../Validation/food"
+
 const Router = express.Router()
 
 // get all restuarants based on city    
@@ -18,6 +23,9 @@ const Router = express.Router()
  */
 Router.get("/", async(req, res) => {
     try {
+        //validation
+        await ValidateRestuarantCity(req.query)
+
         const { city } = req.query
 
         const allRestuarants = await restuarantModel.find({ city }) //donot use findOne becoz only one restuatrant will be selected
@@ -39,6 +47,8 @@ Router.get("/", async(req, res) => {
  */
 Router.get("/:_id", async( req, res) => {
     try {
+        //validation
+        await ValidateRestuarantID(req.params)
         const { _id } = req.params
         const restuarant = await restuarantModel.findOne({_id})
         //there is no rest
@@ -64,6 +74,9 @@ Router.get("/:_id", async( req, res) => {
  */
 Router.get("/search", async( req, res ) => {
     try {
+        //validation
+        await ValidateRestuarantSearchString(req.body)
+        
         const { searchString } = req.body
         // mongoose will write regex for us
         const restuarants = await restuarantModel.find({

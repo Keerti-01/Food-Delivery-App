@@ -2,10 +2,14 @@
 import express from "express"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
+import passport from "passport";
 
 // models
 import { userModel } from "../../database/user";
-import passport from "passport";
+
+//validation
+import { ValidateSignUp } from "../../Validation/auth"
+import { ValidateSignIn } from "../../Validation/auth"
 
 const Router = express.Router();
 
@@ -18,7 +22,11 @@ const Router = express.Router();
  * access           public
  */
 Router.post("/signup", async(req, res) => {
-    try{        
+    
+    try{ 
+        //validation
+        await ValidateSignUp(req.body.credentials)
+        //api logic
         await userModel.findByEmailAndPhone(req.body.credentials)
         const newUser = await userModel.create(req.body.credentials) // save to databse
         const token = newUser.generateJwtToken() //generate JWT token
@@ -40,7 +48,10 @@ Router.post("/signup", async(req, res) => {
  * access           public
  */
  Router.post("/signin", async(req, res) => {
-    try{        
+    try{ 
+        //validation
+        await ValidateSignIn(req.body.credentials)
+               
         const user = await userModel.findByEmailAndPassword(req.body.credentials)
 
         const token = user.generateJwtToken() //generate JWT token

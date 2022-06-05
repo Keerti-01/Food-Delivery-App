@@ -4,6 +4,10 @@ import passport from "passport"
 
 //database model
 import { reviewModel } from "../../database/allModels"
+//validation
+import { ValidateReviewData } from "../../Validation/review"
+import { ValidateUserID } from "../../Validation/user"
+
 const Router = express.Router()
 
 // posting food/restuarant review
@@ -17,7 +21,7 @@ const Router = express.Router()
  */
 Router.post("/new", async(req, res) => {
     try {
-    
+        await ValidateReviewData(req.body)
         const { reviewData } = req.body
 
          await reviewModel.create(reviewData) //creatinf new review
@@ -38,7 +42,7 @@ Router.post("/new", async(req, res) => {
  */
  Router.delete("/delete/:_id", async(req, res) => {
     try {
-    
+        await ValidateUserID(req.params)
         const { _id } = req.params
 
          await reviewModel.findByIdAndDelete(_id) 

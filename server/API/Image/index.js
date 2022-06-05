@@ -6,6 +6,10 @@ import multer from "multer" //accepts image from user and store it in memory unt
 
 //database model
 import { imageModel } from "../../database/allModels"
+
+//validation
+import { ValidateImage } from "../../Validation/image"
+
 const Router = express.Router()
 
 //utilities
@@ -26,6 +30,8 @@ const upload = multer({ storage })
 //upload.array("file", limit)--> uploading multiple files
 Router.post("/", upload.array("file", 4), async(req, res) => {  //multer willbe 2nd arg
     try {
+        await ValidateImage(req.files)
+        
         const file = req.files;
 
         //s3 bucket options

@@ -23,7 +23,7 @@ export default (passport) => {   //passport is auuthenticating library
                 //user exist or not
                 const user = await userModel.findOne({ email: newUser.email })
                
-                //if user exist then call done method
+                //if user exist then generate token and call done method
                 if(user){
                      //create token
                     const token = user.generateJwtToken()

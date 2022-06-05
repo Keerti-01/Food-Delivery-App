@@ -25,3 +25,25 @@
     => eg: static--> userModel.ourStatic()
            method--> checkUserByEmail.ourMethods()
 
+
+************** Validation ***************
+*public route* --> whenever user requests some data from server, the data will be provided to the user without any authentication/ logged in
+
+*private route* --> whenever user requests somethng , the server will look for authentication token i.e. JWT Token, if the token is present then it will check whether it is valid or not
+--> if JWT token is valid then only server will send response to the user
+--> if JWT token is not valid then the server will send 401- unauthorized status code
+
+
+*****validation****
+-> auth *
+-> food *
+-> image * 
+-> menu -> food validation *
+-> order -> user validation *
+-> restuarant  *
+-> review *
+-> user *
+
+*private routes* --> orders 
+
+
