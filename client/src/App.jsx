@@ -1,7 +1,8 @@
 
 function App() {
   return (
-    <div >
+    <div className="text-3xl font-bold underline" >
+      Hello, Welcome to react application
     </div>
   );
 }
