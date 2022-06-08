@@ -1,10 +1,19 @@
 
+//importing HOC
+import HomeLayoutHoc from "./HOC/Home.Hoc";
+
+//importing components
+import Navbar from "./Components/Navbar";
+
 function App() {
-  return (
-    <div className="text-3xl font-bold underline" >
-      Hello, Welcome to react application
-    </div>
-  );
+  return <>
+    
+      <HomeLayoutHoc component={Navbar} path="/" /> 
+    
+  </>
 }
 
 export default App;
+ 
+// <> </> ====> its known as fragment
+//component --> will be our centter component which willbe varying
