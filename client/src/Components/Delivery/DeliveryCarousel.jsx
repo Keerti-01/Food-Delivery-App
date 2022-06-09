@@ -10,7 +10,7 @@ const DeliveryCarousel = () => {
         {
           image:
             "https://b.zmtcdn.com/data/homepage_dish_data/4/76d788a2600b609bb0a08443e03df95b.png",
-          title: "biryani",
+          title: "Biryani",
         },
         {
           image:
@@ -48,6 +48,7 @@ const DeliveryCarousel = () => {
        // arrows: true,
         infinite: true,
         slidesToShow: 4,
+        speed: 500,
         slidesToScroll: 1,
         //nextArrow: <NextArrow />,
         //prevArrow: <PrevArrow />
