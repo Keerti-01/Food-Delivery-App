@@ -3,14 +3,16 @@
 import HomeLayoutHoc from "./HOC/Home.Hoc";
 
 //importing components
-import Navbar from "./Components/Navbar";
+import Master from "./Components/master";
+import Temp from "./Components/temp";
 
 function App() {
-  return <>
+  return (<>
     
-      <HomeLayoutHoc component={Navbar} path="/" /> 
+      <HomeLayoutHoc component={Temp} path="/" /> 
+      <HomeLayoutHoc component={Master} path="/:type" /> 
     
-  </>
+  </>)
 }
 
 export default App;
@@ -24,3 +26,7 @@ export default App;
 //nutrition
 
 //master -> url parameter
+
+// :type --> delivery / diningout / nightlife / nutrition
+//master will be passed inside component and master will look for type paramter, depending on paramter it wil render
+// the pages

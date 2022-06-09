@@ -1,4 +1,5 @@
-import React from "react"
+import React , {useState} from "react"
+import { useParams, Link } from "react-router-dom"
 import {RiShoppingBag3Line} from "react-icons/ri"
 import {IoFastFoodOutline} from "react-icons/io5"
 import {BiDrink} from "react-icons/bi"
@@ -6,27 +7,61 @@ import {IoNutritionOutline} from "react-icons/io5"
 
 //for mobile and tablet view
 const MobileTabs = () => {
+
+    const [allTypes, setAllTypes] = useState([
+        {
+            id: "delivery",  
+            icon: <RiShoppingBag3Line />,
+            name: "Delivery",
+            isActive: false
+        },
+        {
+            id: "dining",
+            icon: <IoFastFoodOutline />,
+            name: "Dining Out",
+            isActive: false
+        },
+        {
+            id: "night",
+            icon: <BiDrink />,
+            name: "Night Life",
+            isActive: false
+        },
+        {
+            id: "nutrition",
+            icon: <IoNutritionOutline />,
+            name: "Nutrition",
+            isActive: false
+        }
+    ])
+
+    const { type } = useParams();
+
     return (
         <>
             <div className="lg:hidden bg-white shadow-lg p-3 fixed bottom-0 z-10 w-full 
             flex items-center justify-between md:justify-evenly text-gray-700 border border-gray-400">
-                <div className="flex flex-col items-center text-xl">
-                    <RiShoppingBag3Line />
-                    <h5 className="text-lg">Delivery</h5>
-                </div>
-                <div className="flex flex-col items-center text-xl">
-                    <IoFastFoodOutline />
-                    <h5 className="text-lg">Dining Out</h5>
-                </div>
-                <div className="flex flex-col items-center text-xl">
-                    <BiDrink />
-                    <h5 className="text-lg">Night Life</h5>
-                </div>
-                <div className="flex flex-col items-center text-xl">
-                    <IoNutritionOutline />
-                    <h5 className="text-lg">Nutrition</h5>
-                </div>
+                
+                {
+                    allTypes.map((items) => (
+                        <Link to={`/${items.id}`}>
+                        <div className={
+                            type === items.id
+                            ? "flex flex-col relative items-center text-xl text-app-500 " : 
+                            "flex flex-col items-center text-xl"
+                            }>
+                            <div className={
+                                type === items.id && 
+                                "absolute -top-3 border-t-2 border-app-500 w-full"
+                            } />
+                            {items.icon}
+                            <h5 className="text-lg">{items.name}</h5>
+                        </div>
+                        </Link>
+                    ))
+                }
             </div>
+            
         </>
     )
 }
@@ -81,3 +116,4 @@ const FoodTab = () => {
 }
 
 export default FoodTab;
+
