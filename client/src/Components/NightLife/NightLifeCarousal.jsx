@@ -4,7 +4,7 @@ import Slider from "react-slick"
 //components
 import PictureCarousalCard from "../PictureCarousal";
 
-const DiningCarousal = () => {
+const NightLifeCarousal = () => {
 
     const settings = {
         dots: true,
@@ -56,4 +56,4 @@ const DiningCarousal = () => {
 
 }
 
-export default DiningCarousal;
+export default NightLifeCarousal;
