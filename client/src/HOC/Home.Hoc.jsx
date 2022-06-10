@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes,Route } from "react-router-dom";
+import { Routes,Route,Navigate } from "react-router-dom";
 
 //Layout
 import HomeLayout from "../Layout/Home.Layout";
@@ -16,8 +16,9 @@ const HomeLayoutHoc = ({component: Component,path, ...rest}) => {
                 <Component /> 
             </HomeLayout>
          }
-           
+         
         />
+        <Route path="/" element={<Navigate to ="/delivery" />}/>
         </Routes>    
     </>
     );

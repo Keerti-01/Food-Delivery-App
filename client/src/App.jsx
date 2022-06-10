@@ -15,8 +15,10 @@ function App() {
         <Navigate to="/delivery"/>
       </Route> */}
       {/* <Route path="/" element={<Navigate replace to="/delivery" />} /> */}
-      <Navigate to="/delivery" replace={true} />
+      {/* <Navigate to="/delivery"  /> */}
       {/* <HomeLayoutHoc component={Temp} path="/" />  */}
+
+      {/* <Route path="/" element={<Navigate to ="/delivery" />}/> */}
       <HomeLayoutHoc component={Home} path="/:type" /> 
     
   </>)
