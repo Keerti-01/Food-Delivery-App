@@ -55,7 +55,7 @@ const DeliveryCarousel = () => {
     } 
     
     return (<>
-        <h1 className="text-xl font-semibold mb-4 ">Inspiration for your First Order</h1>
+        <h1 className="text-2xl font-semibold mb-4 ">Inspiration for your First Order</h1>
         <div className="lg:hidden flex flex-wrap justify-between gap-3 lg:gap-0 md:gap-2">
             {
                 categories.map((food) => (

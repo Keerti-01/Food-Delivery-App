@@ -50,7 +50,7 @@ const Brand = (props) => {
     return (<>
         <div className="my-10 mb-10 lg:my-20">
             
-            <h1 className="text-xl font-semibold mb-4 ">Top Brands in Spotlight</h1>
+            <h1 className="text-2xl font-semibold mb-4 ">Top Brands in Spotlight</h1>
         <Slider {...settings}>
             {logos.map((logo) => (
                 <div className="w-32 h-48 mx-10 px-3 bg-white shadow">
