@@ -1,16 +1,23 @@
+import {Route, Navigate} from "react-router-dom"
 
 //importing HOC
 import HomeLayoutHoc from "./HOC/Home.Hoc";
 
 //importing components
-import Master from "./Components/master";
 import Temp from "./Components/temp";
+
+//pages
+import Home from "./Page/Home"
 
 function App() {
   return (<>
-    
-      <HomeLayoutHoc component={Temp} path="/" /> 
-      <HomeLayoutHoc component={Master} path="/:type" /> 
+      {/* <Route exact path="/">
+        <Navigate to="/delivery"/>
+      </Route> */}
+      {/* <Route path="/" element={<Navigate replace to="/delivery" />} /> */}
+      <Navigate to="/delivery" replace={true} />
+      {/* <HomeLayoutHoc component={Temp} path="/" />  */}
+      <HomeLayoutHoc component={Home} path="/:type" /> 
     
   </>)
 }
