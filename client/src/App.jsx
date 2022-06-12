@@ -1,7 +1,8 @@
-import {Route, Navigate} from "react-router-dom"
+import {Route, Routes, Navigate} from "react-router-dom"
 
 //importing HOC
 import HomeLayoutHoc from "./HOC/Home.Hoc";
+import RestuarantLayoutHoc from "./HOC/RestuarantHOC";
 
 //importing components
 import Temp from "./Components/temp";
@@ -11,16 +12,14 @@ import Home from "./Page/Home"
 
 function App() {
   return (<>
-      {/* <Route exact path="/">
-        <Navigate to="/delivery"/>
-      </Route> */}
-      {/* <Route path="/" element={<Navigate replace to="/delivery" />} /> */}
-      {/* <Navigate to="/delivery"  /> */}
-      {/* <HomeLayoutHoc component={Temp} path="/" />  */}
-
-      {/* <Route path="/" element={<Navigate to ="/delivery" />}/> */}
-      <HomeLayoutHoc component={Home} path="/:type" /> 
-    
+      
+      <Routes>
+        <Route path="/" element={<Navigate to ="/delivery" />}/>
+      </Routes>
+      
+      <HomeLayoutHoc  path="/:type" exact component={Home}  /> 
+      <RestuarantLayoutHoc  path="/restuarant/:id" exact component={Temp}  />
+      
   </>)
 }
 
@@ -39,3 +38,12 @@ export default App;
 // :type --> delivery / diningout / nightlife / nutrition
 //master will be passed inside component and master will look for type paramter, depending on paramter it wil render
 // the pages
+
+// {/* <Route exact path="/">
+//         <Navigate to="/delivery"/>
+//       </Route> */}
+//       {/* <Route path="/" element={<Navigate replace to="/delivery" />} /> */}
+//       {/* <Navigate to="/delivery"  /> */}
+//       {/* <HomeLayoutHoc component={Temp} path="/" />  */}
+
+//       {/* <Route path="/" element={<Navigate to ="/delivery" />}/> */}

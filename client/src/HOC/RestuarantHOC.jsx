@@ -2,9 +2,9 @@ import React from "react";
 import { Routes,Route } from "react-router-dom";
 
 //Layout
-import HomeLayout from "../Layout/Home.Layout";
+import RestuarantLayout from "../Layout/Restuarant.layout";
 
-const HomeLayoutHoc = ({component: Component,path, ...rest}) => {
+const RestuarantHoc = ({component: Component,path, ...rest}) => {
     return (
     <>
         <Routes>
@@ -12,10 +12,12 @@ const HomeLayoutHoc = ({component: Component,path, ...rest}) => {
         {...rest}
         path={path}
          element={
-            <HomeLayout>
+            <RestuarantLayout>
                 <Component /> 
-            </HomeLayout>
+           </RestuarantLayout>
          }
+            
+         
          
         />
         
@@ -24,4 +26,4 @@ const HomeLayoutHoc = ({component: Component,path, ...rest}) => {
     );
 }
 
-export default HomeLayoutHoc;
+export default RestuarantHoc;
