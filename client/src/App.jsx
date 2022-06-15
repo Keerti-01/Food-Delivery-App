@@ -9,6 +9,7 @@ import Temp from "./Components/temp";
 
 //pages
 import Home from "./Page/Home"
+import Overview from "./Page/Restuarant/Overview"
 
 function App() {
   return (<>
@@ -18,7 +19,16 @@ function App() {
       </Routes>
       
       <HomeLayoutHoc  path="/:type" exact component={Home}  /> 
-      <RestuarantLayoutHoc  path="/restuarant/:id" exact component={Temp}  />
+
+      <Routes>
+        <Route path="/restuarant/:id" element={<Navigate to ="/restuarant/:id/overview" />}/>
+      </Routes>
+
+      <RestuarantLayoutHoc  path="/restuarant/:id/overview" exact component={Overview}  />
+      <RestuarantLayoutHoc  path="/restuarant/:id/order-online" exact component={Temp}  />
+      <RestuarantLayoutHoc  path="/restuarant/:id/menu" exact component={Temp}  />
+      <RestuarantLayoutHoc  path="/restuarant/:id/reviews" exact component={Temp}  />
+      <RestuarantLayoutHoc  path="/restuarant/:id/photos" exact component={Temp}  />
       
   </>)
 }

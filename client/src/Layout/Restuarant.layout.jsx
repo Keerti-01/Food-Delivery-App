@@ -8,12 +8,12 @@ import RestuarantNavbar from "../Components/Navbar/restuarantNavbar";
 import ImageGrid from "../Components/restuarant/ImageGrid";
 import RestuarantInfo from "../Components/restuarant/RestuarantInfo";
 import InfoButtons from "../Components/restuarant/InfoButtons";
+import TabContainer from "../Components/restuarant/Tabs";
 
 
+const RestuarantLayout = (props) => {
 
-const RestuarantLayout = () => {
-
-    const [restuarant, setRestaurant] = useState({
+    const [restuarant, setRestuarant] = useState({
         images: [
             "https://b.zmtcdn.com/data/homepage_dish_data/4/76d788a2600b609bb0a08443e03df95b.png",
             "https://b.zmtcdn.com/data/homepage_dish_data/4/76d788a2600b609bb0a08443e03df95b.png",
@@ -43,22 +43,23 @@ const RestuarantLayout = () => {
                     <InfoButtons isActive>
                         <TiStarOutline /> Add Review
                     </InfoButtons>
-
                     <InfoButtons >
                         <RiDirectionLine /> Direction
                     </InfoButtons>
-
                     <InfoButtons >
                         <BiBookmarkPlus /> Bookmark
                     </InfoButtons>
-
                     <InfoButtons >
                         <RiShareForwardLine /> Share
                     </InfoButtons>
                 </div>
 
-
-
+                <div className="my-10">
+                    <TabContainer>
+                        {props.children}
+                    </TabContainer>
+                </div>
+                <div className="relative">{props.children}</div>
 
             </div>
 
