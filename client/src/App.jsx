@@ -3,6 +3,7 @@ import {Route, Routes, Navigate} from "react-router-dom"
 //importing HOC
 import HomeLayoutHoc from "./HOC/Home.Hoc";
 import RestuarantLayoutHoc from "./HOC/RestuarantHOC";
+import CheckoutHoc from "./HOC/Checkout.HOC";
 
 //importing components
 import Temp from "./Components/temp";
@@ -14,6 +15,7 @@ import OrderOnline from "./Page/Restuarant/OrderOnline";
 import Reviews from "./Page/Restuarant/Reviews";
 import Menu from "./Page/Restuarant/Menu";
 import Photos from "./Page/Restuarant/Photos";
+import Checkout from "./Page/Checkout";
 
 function App() {
   return (<>
@@ -33,6 +35,8 @@ function App() {
       <RestuarantLayoutHoc  path="/restuarant/:id/menu" exact component={Menu}  />
       <RestuarantLayoutHoc  path="/restuarant/:id/reviews" exact component={Reviews}  />
       <RestuarantLayoutHoc  path="/restuarant/:id/photos" exact component={Photos}  />
+
+      <CheckoutHoc path="/checkout/orders" exact component={Checkout} />
       
   </>)
 }

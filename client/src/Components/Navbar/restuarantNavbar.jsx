@@ -13,7 +13,7 @@ const MobileNav = () => {
         <div className="flex w-full items-center justify-between lg:hidden">
             <AiOutlineArrowLeft />
             <div className="w-32 ">
-                    <img src="../images/logo.png" alt="logo" className="w-full h-full" />
+                    <img src="logo.png" alt="logo" className="w-full h-full" />
             </div>
             <div className="flex items-center gap-3">
                 <button className="bg-app-300 text-white p-2 rounded-full">Login</button>
