@@ -1,0 +1,1 @@
+export const GET_RESTUARANT = "GET_RESTUARANT"
