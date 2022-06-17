@@ -7,7 +7,7 @@ import ReviewModal from "./ReviewModal"
 const AddReviewCard = () => {
 
     const handleRating = (value) => console.log(value)
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
 
     const openModal = () => setIsOpen(true)
 
