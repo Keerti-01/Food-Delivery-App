@@ -5,7 +5,7 @@ const ReviewCard = () => {
     return (
         <>
         <div className="flex flex-col gap-3 my-3">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center gap-6 md:justify-between ">
                 <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full">
                     <img src="https://cdn1.vectorstock.com/i/1000x1000/36/15/businessman-character-avatar-isolated-vector-12613615.jpg" 

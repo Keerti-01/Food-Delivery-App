@@ -3,30 +3,53 @@ import {Link, useParams} from "react-router-dom"
 import {IoMdArrowDropright} from "react-icons/io"
 import Slider from "react-slick"
 import ReactStars from "react-rating-stars-component"
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
+
 
 //component
 import MenuCollection from "../../Components/restuarant/MenuCollection"
 import MenuSimilarRestuarantCard from "../../Components/restuarant/MenuSimilarRestuarantCard"
 import ReviewCard from "../../Components/restuarant/Reviews/ReviewCard"
+import MapView from "../../Components/restuarant/MapView"
 
 const Overview = () => {
     const {id} = useParams();
+
     const settings = {
         dots: true,
         infinite: true,
         slidesToShow: 3,
         speed: 500,
         slidesToScroll: 1,
-        
+       
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 3,
+                    infinite: true
+                }
+            },{
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },{
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     } 
-
     const ratingChanged = (newRating) => {
         console.log(newRating)
     }
 
-    const position = [12.988134202889283, 77.59405893120281]
-
+    
     return (
         <>
             <div className="flex flex-col md:flex-row relative">
@@ -79,6 +102,12 @@ const Overview = () => {
                             <ReactStars count={5} onChange={ratingChanged} size={24} activeColor="#ffd700" />
                         </div>
                         
+                        <div className="my-4 md:hidden flex flex-col gap-4 w-full ">
+                            <MapView title="Mumbai Express" phno="+916370198523"
+                                mapLocation={[12.98813402889283, 77.5940583120281]} 
+                                address="Gandhi Nagar" />
+                        </div>
+
                         <div className="flex flex-col gap-4 mt-10">
                             <ReviewCard />
                             <ReviewCard />
@@ -89,30 +118,11 @@ const Overview = () => {
 
 
                 <aside style={{height: "fit-content"}} 
-                    className="hidden md:block md:w-4/12 sticky top-2 right-4 
-                bg-white p-3 shadow-md rounded-xl absolute">
-                    <div>
-                        <h4 className="text-lg font-medium">Call</h4>
-                        <h5 className="text-app-400 font-medium">+916370198933</h5>
-                    </div>
-                    <div className="mt-6">
-                        <h4 className="text-lg font-medium ">Direction</h4>
-                        {/* map  */}
-                        <div className="w-full h-48">
-                        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-                            <TileLayer
-                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            />
-                            <Marker position={position}>
-                                <Popup>
-                                    A pretty CSS3 popup. <br /> Easily customizable.
-                                </Popup>
-                            </Marker>
-                        </MapContainer>
-                        </div>
-
-                    </div>
+                    className="hidden md:flex md:w-4/12 sticky top-2 right-4 
+                bg-white p-3 shadow-md rounded-xl absolute flex flex-col gap-4">
+                    
+                    <MapView title="Mumbai Express" phno="+916370198523"
+                     mapLocation={[12.98813402889283, 77.5940583120281]} address="Gandhi Nagar" />
                         
                 </aside>
             </div>
