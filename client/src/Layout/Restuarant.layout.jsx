@@ -9,6 +9,7 @@ import ImageGrid from "../Components/restuarant/ImageGrid";
 import RestuarantInfo from "../Components/restuarant/RestuarantInfo";
 import InfoButtons from "../Components/restuarant/InfoButtons";
 import TabContainer from "../Components/restuarant/Tabs";
+import CartContainer from "../Components/Cart/CartContainer";
 
 
 const RestuarantLayout = (props) => {
@@ -62,6 +63,8 @@ const RestuarantLayout = (props) => {
                 <div className="relative">{props.children}</div>
 
             </div>
+
+            <CartContainer />
 
             
         </>
