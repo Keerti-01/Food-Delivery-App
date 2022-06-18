@@ -52,4 +52,22 @@ Router.post("/", upload.array("file", 4), async(req, res) => {  //multer willbe 
     }
 })
 
+/*
+Route     /
+Des       Get Image details
+Params    _id
+Access    Public
+Method    GET  
+*/
+Router.get("/:_id", async (req, res) => {
+    try {
+      const image = await imageModel.findById(req.params._id);
+  
+      return res.json({ image });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  });
+
+
 export default Router;
