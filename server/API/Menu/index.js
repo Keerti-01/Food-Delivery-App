@@ -22,7 +22,7 @@ Router.get("/list/:_id", async(req, res) => {
         await ValidateRestuarantID(req.params)
 
         const { _id } = req.params
-        const menus = await menuModel.findOne(_id)
+        const menus = await menuModel.findById(_id)
 
         return res.json(menus)
 

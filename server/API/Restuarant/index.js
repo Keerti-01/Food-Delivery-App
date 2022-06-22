@@ -50,7 +50,7 @@ Router.get("/:_id", async( req, res) => {
         //validation
         await ValidateRestuarantID(req.params)
         const { _id } = req.params
-        const restuarant = await restuarantModel.findOne({_id})
+        const restuarant = await restuarantModel.findById({_id})
         //there is no rest
         if(!restuarant) return res.status(404).json({ error: "Restuarant not found" })
         //if there is restuarant exists

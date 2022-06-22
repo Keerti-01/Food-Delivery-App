@@ -32,6 +32,26 @@ Router.get("/r/:_id", async(req, res) => {
     }
 })
 
+/** Food based on particular restuarant
+ * Route            /:_id
+ * Desc             get food based on item
+ * Params           -id
+ * method           GET
+ * access           public
+ */
+Router.get("/:_id", async(req, res) => {
+    
+    try {
+        const { _id } = req.params
+        const foods = await foodModel.findById({_id})
+
+        return res.json({ foods })
+
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+})
+
 /** Food based on category
  * Route            /food/c/:category
  * Desc             get all food based on category

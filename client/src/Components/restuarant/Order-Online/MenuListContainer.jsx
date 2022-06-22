@@ -17,8 +17,8 @@ const MenuListContainer = (props) => {
     return(
         <>
             <div className="w-full flex flex-col gap-3 ">
-                <MenuCategory name="Recommended" items={["", ""]} 
-                onClickHandler={onClickHandler} isActive={selected === "Recommended"} />
+                <MenuCategory {...props}
+                onClickHandler={onClickHandler} isActive={selected === props.name} />
                 
             </div>
 

@@ -11,19 +11,36 @@ import { ValidateUserID } from "../../Validation/user"
 const Router = express.Router()
 
 /**get user data
+ * Route            /
+ * Desc             get user data
+ * Params           id
+ * method           GET
+ * access           public
+ */
+Router.get("/", async(req, res) => {
+    try { 
+    
+        const user = await UserModel.findById(req.params._id);
+        const {email,fullname, phoneNumber,address} = req.session.passport.user._doc;
+        return res.json({ user: {email,fullname, phoneNumber,address} })
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+})
+
+/**get user data
  * Route            /user/:id
  * Desc             get user data
  * Params           id
  * method           GET
  * access           public
  */
-Router.get("/:_id", async(req, res) => {
-    try {
-        await ValidateUserID(req.params)
-
-        const { _id } = req.params
-        const getUser = await userModel.findById(_id)
-        return res.json({ user: getUser })
+ Router.get("/:_id", async(req, res) => {
+    try { 
+    
+        const user = await UserModel.findById(req.params._id);
+        const { fullname } = user
+        return res.json({ user: {  fullname } })
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }

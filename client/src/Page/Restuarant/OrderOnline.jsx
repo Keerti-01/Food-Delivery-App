@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import {useSelector , useDispatch} from "react-redux"
 import {AiOutlineCompass} from "react-icons/ai"
 import {BiTimeFive} from "react-icons/bi"
 
@@ -7,7 +8,18 @@ import FloatMenuBtn from "../../Components/restuarant/Order-Online/FloatMenuBtn"
 import MenuListContainer from "../../Components/restuarant/Order-Online/MenuListContainer";
 import FoodList from "../../Components/restuarant/Order-Online/FoodList";
 
+// redux actions
+import { getFoodList } from "../../Redux/Reducer/Food/Food.action"
+
 const OrderOnline = () => {
+    const [menu , setMenu] = useState([]);
+    const reduxState = useSelector((globalStore) => globalStore.restuarant.selectedRestuarnt.restuarant
+    )
+    const dispatch = useDispatch();
+    useEffect(() => {
+        reduxState &&
+        dispatch(getFoodList(reduxState.menu)).then((data) => setMenu(data.payload.menus.menus))
+    },[reduxState])
     return (
         <>
             <div className="w-full flex h-screen overflow-hidden">
@@ -27,26 +39,9 @@ const OrderOnline = () => {
                     </div>
 
                     <section className="mt-6 flex flex-col gap-3 h-screen hover:overflow-auto md:gap-5">
-                        <FoodList title="Recommended" 
-                        items={[
-                            {
-                                price:"1000",
-                                rating: 3, 
-                                description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat fugit vitae officiis soluta animi ipsum et, tempora vel, natus quae quam labore, consectetur consequatur placeat non quisquam vero! Distinctio, accusantium?",
-                                title:"Andhra Mutton Biriyani",
-                                image:
-                                    "https://b.zmtcdn.com/data/homepage_dish_data/4/76d788a2600b609bb0a08443e03df95b.png"
-                            },{
-                                price:"1000",
-                                rating: 3, 
-                                description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat fugit vitae officiis soluta animi ipsum et, tempora vel, natus quae quam labore, consectetur consequatur placeat non quisquam vero! Distinctio, accusantium?",
-                                title:"Andhra Mutton Biriyani",
-                                image:
-                                    "https://b.zmtcdn.com/data/homepage_dish_data/4/76d788a2600b609bb0a08443e03df95b.png"
-                          
-                            }
-                        ]}
-                        />
+                        {menu.map((item) => (
+                            <FoodList key={ item._id} {...item} />
+                        ))}
                         <FoodList title="Pizza" 
                         items={[
                             {

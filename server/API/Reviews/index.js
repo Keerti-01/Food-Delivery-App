@@ -1,6 +1,7 @@
 //importing libraries
 import express from "express"
 import passport from "passport"
+import ReviewCard from "../../../client/src/Components/restuarant/Reviews/ReviewCard"
 
 //database model
 import { reviewModel } from "../../database/allModels"
@@ -9,6 +10,25 @@ import { ValidateReviewData } from "../../Validation/review"
 import { ValidateUserID } from "../../Validation/user"
 
 const Router = express.Router()
+
+/**
+ * Route            /
+ * Desc             Get all review
+ * Params           resid
+ * Body             none
+ * method           get
+ * access           public
+ */
+
+ Router.get("/:resid", async(req, res) => {
+    try {
+       const reviews = await reviewModel.find({restuarant: req.params.resid})
+         return res.json({ reviews })
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+})
+
 
 // posting food/restuarant review
 /**

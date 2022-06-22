@@ -1,7 +1,18 @@
-import React from "react"
-import {TiStarFullOutline} from "react-icons/ti"
+import React, { useState, useEffect } from "react";
+import {TiStarFullOutline} from "react-icons/ti";
+import { useDispatch } from "react-redux";
+import dayjs from "dayjs";
+import { getUser } from "../../../Redux/Reducer/User/Image/user.action";
 
-const ReviewCard = () => {
+const ReviewCard = (props) => {
+    const [user , setUser] =  useState([]);
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getUser(props.user)).then(data => 
+            // setUser(data.payload.user.user.user)
+            console.log(data)
+            );
+    }, [])
     return (
         <>
         <div className="flex flex-col gap-3 my-3">
@@ -12,7 +23,7 @@ const ReviewCard = () => {
                     alt="avatar" className="w-full h-full rounded-full object-cover" />
                 </div>
                 <div className="flex flex-col gap-1">
-                    <h3 className="text-lg font-semibold">Keerti</h3>
+                    <h3 className="text-lg font-semibold">{user?.fullname}</h3>
                     <small className="text-gray-500">5 Reviews &#8226; 3 Followers</small>
                 </div>
                 </div>
@@ -24,13 +35,11 @@ const ReviewCard = () => {
                 <div className="flex items-center gap-3">
                     <span className="text-white bg-green-700 text-sm px-2 py-1 rounded-lg flex items-center gap-1">
                         3 <TiStarFullOutline /> </span>
-                    <h5 className="font-base uppercase">Delivery</h5>
-                    <small className="text-gray-500">3 days ago</small>
+                    <h5 className="font-base uppercase">{props.isRestuarantReview ? "Dining" : "Delivery"}</h5>
+                    <small className="text-gray-500">{dayjs(props.createdAt).format("DD MM YYYY")}</small>
                 </div>
                 <div className="w-full mt-1">
-                    <p className="w-full text-gray-600 font-light text-base ">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam sunt quidem, itaque similique,
-                         alias et illum, maxime
-                         laborum esse magni eveniet hic quo illo magnam in voluptate sint! Eius, autem.</p>
+                    <p className="w-full text-gray-600 font-light text-base ">{props.reviewText}</p>
                 </div>
             </div>
 
